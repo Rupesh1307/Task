@@ -1,5 +1,5 @@
-import React,{FC} from 'react';
-import { colors } from '../../utils/colors';
+import React, {FC} from 'react';
+import {colors} from '../../utils/colors';
 
 import {
   TouchableOpacity,
@@ -12,18 +12,18 @@ import {
   DimensionValue,
 } from 'react-native';
 
-interface ButtonProps extends TouchableOpacityProps{
-  children : React.ReactNode,
-  isLoading? : boolean, 
-  buttonBackgroundColor?: string
-  buttonBorderColor?: string,
-  buttonBorderWidth?: number,
-  buttonWidth ?: DimensionValue,
-  isTransparent?: boolean,
-  childrenContainerStyle?: StyleProp<ViewStyle>
+interface ButtonProps extends TouchableOpacityProps {
+  children: React.ReactNode;
+  isLoading?: boolean;
+  buttonBackgroundColor?: string;
+  buttonBorderColor?: string;
+  buttonBorderWidth?: number;
+  buttonWidth?: DimensionValue;
+  isTransparent?: boolean;
+  childrenContainerStyle?: StyleProp<ViewStyle>;
 }
 
-const Button:FC<ButtonProps> = ({
+const Button: FC<ButtonProps> = ({
   children,
   isLoading,
   buttonBackgroundColor,
@@ -35,23 +35,32 @@ const Button:FC<ButtonProps> = ({
   style,
   ...rest
 }) => {
-    let baseBackgroundColor = buttonBackgroundColor || colors.primary ;
-    let baseBorderColor = buttonBorderColor || colors.primary;
-    let borderWidth = buttonBorderWidth || 1;
+  let baseBackgroundColor = buttonBackgroundColor || colors.primary;
+  let baseBorderColor = buttonBorderColor || colors.primary;
+  let borderWidth = buttonBorderWidth || 1;
 
-    let baseButtonWidth = buttonWidth  || '100%';
+  let baseButtonWidth = buttonWidth || '100%';
 
-    if(isTransparent){
-      baseBackgroundColor='transparent'
-    }
+  if (isTransparent) {
+    baseBackgroundColor = 'transparent';
+  }
 
   return (
     <TouchableOpacity
-      style={[styles.button,{backgroundColor:baseBackgroundColor,borderColor:baseBorderColor,borderWidth:borderWidth},style]}
+      style={[
+        styles.button,
+        {
+          backgroundColor: baseBackgroundColor,
+          borderColor: baseBorderColor,
+          borderWidth: borderWidth,
+        },
+        style,
+      ]}
       {...rest}>
       <View
         style={[
-          styles.buttonChildrenContainer,{width:baseButtonWidth},
+          styles.buttonChildrenContainer,
+          {width: baseButtonWidth},
           childrenContainerStyle,
         ]}>
         {isLoading ? (

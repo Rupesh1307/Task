@@ -1,17 +1,17 @@
-import React, {FC, createContext,useState} from 'react';
+import React, {FC} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import RootNavigation from './src/navigation/rootnavigation';
-import data from './src/data/data.json';
+import FlashMessage from 'react-native-flash-message';
+import {AppProvider} from './src/hooks/apphook';
 
-export const dataContext = createContext<any>(null);
 const App: FC = () => {
-  const [eventData,setEventData] = useState(data)
   return (
-    <dataContext.Provider value={{eventData , setEventData }}>
+    <AppProvider>
       <SafeAreaView style={styles.container}>
         <RootNavigation />
+        <FlashMessage position="top" />
       </SafeAreaView>
-    </dataContext.Provider>
+    </AppProvider>
   );
 };
 

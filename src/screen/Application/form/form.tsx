@@ -29,12 +29,13 @@ const Form: FC = () => {
     try {
       addContact(userInfo.data.user.uid, contactNumber);
       setLoading(false);
+      setContactNumber('');
       showMessage({
         message: 'Successfully',
         description: 'Contact Added Successfully',
         duration: 3000,
-        type: 'danger',
-        icon: 'danger',
+        type: 'success',
+        icon: 'success',
       });
     } catch (err) {
       setLoading(false);
@@ -57,6 +58,7 @@ const Form: FC = () => {
           lable="ContactNumber"
           placeholder="Enter your Contact Number"
           keyboardType="number-pad"
+          value={contactNumber}
           maxLength={10}
           onChangeText={text => {
             setContactNumber(text);
